@@ -17,6 +17,15 @@ db.serialize(() => {
       estoque INTEGER NOT NULL
     )
   `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      senha TEXT NOT NULL
+    )
+  `);
 });
 
 export default db;
