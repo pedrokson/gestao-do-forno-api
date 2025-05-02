@@ -1,14 +1,18 @@
 import express from 'express';
 import cors from 'cors';
+import authRoutes from './routes/auth';
 import produtosRoutes from './routes/produtos';
 import usuariosRoutes from './routes/usuarios';
+import vendaRoutes from './routes/venda'; // Importando a rota de vendas
 import { verificarToken } from './middlewares/auth.middleware';
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/produtos', verificarToken, produtosRoutes);
-app.use('/usuarios', verificarToken, usuariosRoutes);
+app.use('/', authRoutes);
+app.use('/produtos', produtosRoutes);
+app.use('/usuarios', usuariosRoutes);
+app.use('/vendas', vendaRoutes); // Importando a rota de vendas
 
 const PORT = 3000;
 app.listen(PORT, () => {

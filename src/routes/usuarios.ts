@@ -6,7 +6,7 @@ const router = Router();
 
 // Listar usuários
 router.get('/', (req, res) => {
-  db.all<Usuario[]>('SELECT id, nome, email FROM usuarios', [], (err, rows) => {
+  db.all<Usuario[]>('SELECT id, nome, email, senha FROM usuarios', [], (err, rows) => {
     if (err) return res.status(500).json({ erro: err.message });
     res.json(rows);
   });

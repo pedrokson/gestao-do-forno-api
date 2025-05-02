@@ -26,6 +26,18 @@ db.serialize(() => {
       senha TEXT NOT NULL
     )
   `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS sales (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      produto_id INTEGER NOT NULL,
+      quantidade INTEGER NOT NULL,
+      valor_total REAL NOT NULL,
+      data_venda TEXT NOT NULL,
+      cliente_id INTEGER NOT NULL,
+      FOREIGN KEY (produto_id) REFERENCES produtos (id)
+    )
+  `);
 });
 
 export default db;
