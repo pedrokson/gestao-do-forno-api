@@ -27,7 +27,7 @@ router.put('/:id', (req, res) => {
   const { nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda } = req.body as Produto;
   db.run(
     'UPDATE produtos SET nome = ?, preco = ?, estoque = ? , custo_atual = ?, custo_medio = ?, margem = ?, preco_venda = ? WHERE id = ?',
-    [nome, preco, estoque, req.params.id],
+    [nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda, req.params.id],
     function (err) {
       if (err) return res.status(500).json({ erro: err.message });
       res.json({ alterado: this.changes });
