@@ -14,7 +14,11 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       nome TEXT NOT NULL,
       preco REAL NOT NULL,
-      estoque INTEGER NOT NULL
+      estoque INTEGER NOT NULL,
+      custo_atual REAL DEFAULT 0,
+      custo_medio REAL DEFAULT 0,
+      margem REAL DEFAULT 0,
+      preco_venda REAL DEFAULT 0
     )
   `);
 

@@ -12,10 +12,10 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const { nome, preco, estoque } = req.body as Produto;
+  const { nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda } = req.body as Produto;
   db.run(
-    'INSERT INTO produtos (nome, preco, estoque) VALUES (?, ?, ?)',
-    [nome, preco, estoque],
+    'INSERT INTO produtos (nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    [nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda],
     function (err) {
       if (err) return res.status(500).json({ erro: err.message });
       res.json({ id: this.lastID });
@@ -24,9 +24,9 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  const { nome, preco, estoque } = req.body as Produto;
+  const { nome, preco, estoque, custo_atual, custo_medio, margem, preco_venda } = req.body as Produto;
   db.run(
-    'UPDATE produtos SET nome = ?, preco = ?, estoque = ? WHERE id = ?',
+    'UPDATE produtos SET nome = ?, preco = ?, estoque = ? , custo_atual = ?, custo_medio = ?, margem = ?, preco_venda = ? WHERE id = ?',
     [nome, preco, estoque, req.params.id],
     function (err) {
       if (err) return res.status(500).json({ erro: err.message });
