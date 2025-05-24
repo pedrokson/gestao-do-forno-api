@@ -18,7 +18,7 @@ db.serialize(() => {
       custo_atual REAL DEFAULT 0,
       custo_medio REAL DEFAULT 0,
       margem REAL DEFAULT 0,
-      preco_venda REAL DEFAULT 0
+      preco_venda REAL DEFAULT 0      
     )
   `);
 
@@ -39,7 +39,17 @@ db.serialize(() => {
       valor_total REAL NOT NULL,
       data_venda TEXT NOT NULL,
       cliente_id INTEGER NOT NULL,
+      forma_pagamento TEXT NOT NULL,
+      fiado INTEGER DEFAULT 0,
       FOREIGN KEY (produto_id) REFERENCES produtos (id)
+    )
+  `);
+  db.run(`
+    CREATE TABLE IF NOT EXISTS clientes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nome TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
+      telefone TEXT NOT NULL
     )
   `);
 });
